@@ -1,7 +1,8 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
+import 'package:pdf_vie/model/final_view_model.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
+
+import 'provider/final_vie_provider.dart';
 
 class FinalView extends StatefulWidget {
   const FinalView({Key? key}) : super(key: key);
@@ -42,5 +43,13 @@ class _FinalViewState extends State<FinalView> {
     );
   }
 
-  Future<void> _createPdf() async {}
+  Future<void> _createPdf() async {
+    PdfDocument document = PdfDocument();
+    document.pages.add();
+
+    List<int> bytes = document.save();
+    document.dispose();
+
+    saveAndLaunchFile(bytes, 'Invoice.pdf');
+  }
 }
