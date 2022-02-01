@@ -71,6 +71,20 @@ class _FinalViewState extends State<FinalView> {
 //table add
     PdfGrid grid = PdfGrid();
 
+    //Add grid style
+    grid.style = PdfGridStyle(
+      font: PdfStandardFont(
+        PdfFontFamily.helvetica,
+        20,
+      ),
+      cellPadding: PdfPaddings(
+        left: 5,
+        right: 2,
+        bottom: 2,
+        top: 2,
+      ),
+    );
+
     grid.columns.add(count: 3);
     grid.headers.add(1);
 
