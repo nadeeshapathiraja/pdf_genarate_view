@@ -69,11 +69,45 @@ class _FinalViewState extends State<FinalView> {
       ),
     );
 //table add
-    PdfGrid
+    PdfGrid grid = PdfGrid();
 
+    grid.columns.add(count: 3);
+    grid.headers.add(1);
+
+    PdfGridRow header = grid.headers[0];
+    header.cells[0].value = "Form Id";
+    header.cells[1].value = "Full Name";
+    header.cells[2].value = "Class";
+
+    PdfGridRow row = grid.rows.add();
+    row.cells[0].value = "1";
+    row.cells[1].value = "Nadeesha Pathiraja";
+    row.cells[2].value = "Grade 6";
+
+    row = grid.rows.add();
+    row.cells[0].value = "2";
+    row.cells[1].value = "Sumudu Sanakelum";
+    row.cells[2].value = "Grade 8";
+    row = grid.rows.add();
+
+    row.cells[0].value = "3";
+    row.cells[1].value = "Janaka Perera";
+    row.cells[2].value = "Grade 4";
+
+    //Create new page and add
+    grid.draw(
+      page: document.pages.add(),
+      bounds: const Rect.fromLTWH(
+        0,
+        0,
+        0,
+        0,
+      ),
+    );
+
+//Create cocument
     List<int> bytes = document.save();
     document.dispose();
-
     saveAndLaunchFile(bytes, 'Invoice.pdf');
   }
 }
